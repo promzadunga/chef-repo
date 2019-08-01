@@ -1,2 +1,2 @@
 # chef-repo
-This a repo for Chef infrastructure automation
+This is a repo for Chef infrastructure automation
