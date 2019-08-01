@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Deprecated
 ==========
 
@@ -35,3 +36,7 @@ Next Steps
 ==========
 
 Read the README file in each of the subdirectories for more information about what goes in those directories.
+=======
+# chef-repo
+This is a repo for Chef infrastructure automation
+>>>>>>> 797d96cd6f27ad9a3b03791a1ff5545cd63b1ac6
