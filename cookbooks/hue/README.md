@@ -5,7 +5,7 @@ This cookbook install [Hue](http://gethue.com/) the Apache Hadoop UI.
 Requirements
 ------------
 #### packages
-- `java` - Requires Java with version 7
+- `java` - Requires Java with version 8
 
 Attributes
 ----------
