@@ -1,6 +1,6 @@
 name             'hue'
-maintainer       'Avaus Consulting'
-maintainer_email 'erno.aapa@avaus.fi'
+maintainer       'Zyelabs'
+maintainer_email 'promise@zyelabs.net'
 license          'All rights reserved'
 description      'Installs/Configures hue'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
