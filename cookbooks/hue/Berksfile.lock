@@ -1,0 +1,35 @@
+DEPENDENCIES
+  hue
+    path: .
+    metadata: true
+  minitest-handler
+
+GRAPH
+  ark (4.0.0)
+    build-essential (>= 0.0.0)
+    seven_zip (>= 0.0.0)
+  build-essential (8.2.1)
+    mingw (>= 1.1)
+    seven_zip (>= 0.0.0)
+  chef_handler (3.0.3)
+  git (9.0.1)
+    build-essential (>= 5.0.0)
+  homebrew (5.0.8)
+  hue (0.1.0)
+    git (>= 0.0.0)
+    java (>= 0.0.0)
+    maven (>= 0.0.0)
+    yum (>= 0.0.0)
+  java (4.3.0)
+    homebrew (>= 0.0.0)
+    windows (>= 0.0.0)
+  maven (5.2.0)
+    ark (>= 1.0)
+  mingw (2.1.0)
+    seven_zip (>= 0.0.0)
+  minitest-handler (1.5.1)
+    chef_handler (>= 0.0.0)
+  seven_zip (3.1.1)
+    windows (>= 0.0.0)
+  windows (6.0.0)
+  yum (5.1.0)

@@ -1,0 +1,10 @@
+#site :opscode
+source 'https://supermarket.chef.io'
+
+# Read the metadata.rb to get all dependencies
+metadata
+
+group :integration do
+  # Cookbook to run minitests as a last step in provisioning
+  cookbook 'minitest-handler'
+end

@@ -1,0 +1,105 @@
+#!/bin/bash
+#
+# 
+# Starts a Hue
+#
+# chkconfig: 2345 90 10
+# description: Hue
+ 
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+. /lib/lsb/init-functions
+ 
+RETVAL=0
+desc="Hue daemon"
+PID_DIR=/var/run
+PIDFILE=$PID_DIR/hue.pid
+
+SERVICE_NAME=hue
+HUE_DIR=<%= node[:hue][:install_dir] %>
+DAEMON=$HUE_DIR/build/env/bin/supervisor
+DAEMON_ARGS=
+USER=<%= node[:hue][:user] %>
+LOG_FILE=/var/log/hue.log
+
+start() {
+  echo -n $"Starting $desc: "
+  
+  rm -f $PIDFILE
+
+  start-stop-daemon --start --background --pidfile $PIDFILE --make-pidfile \
+        --user $USER --exec $DAEMON $DAEMON_ARGS > $LOG_FILE 2>&1
+  RETVAL=$?
+
+  #(Even we stop the process, there is subprocesses which need to be killed)
+  pkill -u hue
+  
+  echo
+  
+  printstatus $RETVAL
+
+  return $RETVAL
+}
+
+stop() {
+  echo -n $"Stopping $desc: "
+  
+  start-stop-daemon --stop --retry=TERM/30/KILL/5 --pidfile $PIDFILE
+  RETVAL="$?"
+  echo 
+
+  if [ $RETVAL == "0" ]; then
+    rm -f $PIDFILE
+  else
+    echo "Stopping failed!"
+  fi
+  return $RETVAL
+}
+
+checkstatus() {
+  if [ -f $PIDFILE ]; then
+    PID=$(cat $PIDFILE)
+    ps -p $PID > /dev/null 2>&1
+    RETVAL=$?
+
+    printstatus $RETVAL
+
+  else
+      echo "Not running"
+      RETVAL=1
+  fi
+  return $RETVAL
+}
+
+printstatus() {
+  if [ $1 == "0" ]; then
+    echo "Running"
+  else
+    echo "Not running"
+  fi
+}
+
+restart() {
+  stop
+  start
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    checkstatus
+    ;;
+  restart)
+    restart
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|status|restart}"
+    exit 1
+esac
+
+exit $RETVAL
